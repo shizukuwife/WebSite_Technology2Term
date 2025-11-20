@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>แบบฟอร์ม</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="tel"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .file-upload-box {
+            border: 2px dashed #007bff;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .file-upload-box:hover {
+            background-color: #e9f5ff;
+        }
+
+        .save-button {
+            width: 100%;
+            background-color: #28a745;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .save-button:hover {
+            background-color: #1e7e34;
+        }
+
+        /* เพิ่มสไตล์สำหรับ Audio Control เล็กน้อย */
+        .audio-container {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="audio-container">
+    <p>15. เพลงพื้นหลัง (เล่นอัตโนมัติ)</p>
+    <audio controls loop autoplay>
+        <source src="your_music_file.mp3" type="audio/mpeg"> 
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+
+<div class="container">
+    <h2>แบบฟอร์มสมัครสมาชิก</h2>
+    <form action="#" method="POST"> 
+
+        <label for="name">1. ชื่อ - สกุล:</label>
+        <input type="text" id="name" placeholder="กรอกชื่อและนามสกุล" required>
+
+        <label for="age">2. อายุ:</label>
+        <input type="text" id="age" placeholder="กรอกอายุเป็นตัวเลข" required>
+
+        <label for="address_num">3. ที่อยู่เลขที่:</label>
+        <input type="text" id="address_num" placeholder="เลขที่บ้าน/อาคาร" required>
+        
+        <label for="subdistrict">4. ตำบล/แขวง:</label>
+        <input type="text" id="subdistrict" placeholder="ตำบล/แขวง" required>
+
+        <label for="district">5. อำเภอ/เขต:</label>
+        <input type="text" id="district" placeholder="อำเภอ/เขต" required>
+
+        <label for="province">6. จังหวัด:</label>
+         <input type="text" id="province" placeholder="จังหวัด" required>
+        
+        <label for="zipcode">7. รหัสไปรษณีย์:</label>
+        <input type="text" id="zipcode" pattern="[0-9]{5}" maxlength="5" placeholder="รหัสไปรษณีย์ 5 หลัก" required>
+
+        <label for="tel">8. เบอร์โทร:</label>
+        <input type="text" id="tel" pattern="[0-9]{10}" maxlength="10" placeholder="0XXXXXXXXX (ตัวอย่าง: 0812345678)" required>
+
+        <label for="email">9. Email:</label>
+        <input type="email" id="email" placeholder="ตัวอย่าง: user@example.com" required>
+
+        <h3>ตั้งรหัสเข้าใช้งาน</h3>
+        
+        <label for="username">11. Username:</label>
+        <input type="text" id="username" placeholder="ตั้งชื่อผู้ใช้งาน" required>
+        
+        <label for="password">12. Password:</label>
+        <input type="password" id="password" placeholder="ตั้งรหัสผ่าน" required>
+
+        <label for="photo">13. แนบรูปภาพ (Drag & drop/คลิก):</label>
+        <div class="file-upload-box">
+            <p>ลาก & วางรูปภาพ หรือ คลิกเพื่อเลือกไฟล์</p>
+            <input type="file" id="photo" accept="image/*" style="display: none;"> 
+        </div>
+
+        <button type="submit" class="save-button">14. Save ข้อมูล</button>
+
+    </form>
+</div>
+
+<script>
+    const dropZone = document.getElementById('photo').parentElement;
+    const fileInput = document.getElementById('photo');
+
+    dropZone.addEventListener('click', () => fileInput.click());
+
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropZone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    dropZone.addEventListener('drop', handleDrop, false);
+
+    function handleDrop(e) {
+        let dt = e.dataTransfer;
+        let files = dt.files;
+
+        fileInput.files = files;
+        alert(`รับไฟล์ ${files[0].name} แล้ว!`);
+    }
+</script>
+
+</body>
+</html>
