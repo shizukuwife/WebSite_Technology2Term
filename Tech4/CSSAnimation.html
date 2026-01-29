@@ -23,7 +23,7 @@
             position: relative;
             height: 70px; 
             overflow: hidden;
-            width: 800px; /* ขยายความกว้างเผื่อข้อความยาวๆ */
+            width: 800px;
         }
 
         .text {
@@ -33,11 +33,9 @@
             font-weight: bold;
             opacity: 0;
             transform: translateY(30px);
-            /* ใช้เวลาลูปทั้งหมด 15 วินาที (3 วินาทีต่อ 1 ข้อความ) */
             animation: cycle-text 15s infinite; 
         }
 
-        /* กำหนด Delay ให้แต่ละตัวห่างกันทีละ 3 วินาที */
         .t1 { animation-delay: 0s; color: #00d4ff; }
         .t2 { animation-delay: 3s; color: #00ff88; }
         .t3 { animation-delay: 6s; color: #00ff88; }
@@ -49,7 +47,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
-            5%, 15% { /* ช่วงที่ข้อความค้างไว้ให้คนอ่าน */
+            5%, 15% {
                 opacity: 1;
                 transform: translateY(0);
             }
@@ -74,4 +72,5 @@
     </div>
 
 </body>
+
 </html>
