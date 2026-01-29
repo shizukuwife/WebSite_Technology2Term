@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile Animation</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            color: white;
+        }
+
+        .display-box {
+            position: relative;
+            height: 70px; 
+            overflow: hidden;
+            width: 800px; /* ขยายความกว้างเผื่อข้อความยาวๆ */
+        }
+
+        .text {
+            position: absolute;
+            width: 100%;
+            font-size: 2.5rem;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(30px);
+            /* ใช้เวลาลูปทั้งหมด 15 วินาที (3 วินาทีต่อ 1 ข้อความ) */
+            animation: cycle-text 15s infinite; 
+        }
+
+        /* กำหนด Delay ให้แต่ละตัวห่างกันทีละ 3 วินาที */
+        .t1 { animation-delay: 0s; color: #00d4ff; }
+        .t2 { animation-delay: 3s; color: #00ff88; }
+        .t3 { animation-delay: 6s; color: #00ff88; }
+        .t4 { animation-delay: 9s; color: #00ff88; }
+        .t5 { animation-delay: 12s; color: #00ff88; }
+
+        @keyframes cycle-text {
+            0%, 2% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            5%, 15% { /* ช่วงที่ข้อความค้างไว้ให้คนอ่าน */
+                opacity: 1;
+                transform: translateY(0);
+            }
+            18%, 100% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2 style="font-weight: normal; color: #aaa;">Hello, I am...</h2>
+        <div class="display-box">
+            <div class="text t1">อิษฎาอร โชคมงคลเสถียร</div>
+            <div class="text t2">Creativity</div>
+            <div class="text t3">Ethical Awareness</div>
+            <div class="text t4">Leadership</div>
+            <div class="text t5">Embracing and Celebrating Change</div>
+        </div>
+    </div>
+
+</body>
+</html>
